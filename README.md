@@ -34,6 +34,18 @@ Technical Details:
 Manual Deployment Details:
 -------------------------
 1. Ensure DB connection is setup.
-2. export FLASK_APP = test.py
-3. export FLASK_ENV = development
-4. flask run
+
+server = '<yourservername>.database.windows.net'
+database = '<yourdbname>'
+username = '<yourusername>'
+password = '<yourpassword>'
+
+3. export FLASK_APP = test.py
+4. export FLASK_ENV = development
+5. flask run
+  
+Adding New Data
+---------------
+  There are two options:
+  (a) connect to my SQL Server DB and use Azure Data Studio to import new csv or SQL queries to add new data
+  (b) Upload new data directly into the application, will be processed with pandas
