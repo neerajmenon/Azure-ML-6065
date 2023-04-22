@@ -19,7 +19,9 @@ print("hello")
 conn = pymssql.connect(server=server, user=username, password=password, database=database)
 #conn2 = 'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={0};DATABASE={1};UID={2};PWD={3}'.format(server, database, username, password)
 #conn2 = pyodbc.connect(conn2)
-engine = create_engine(f'mssql+pymssql://{username}:{password}@{server}/{database}')
+#engine = create_engine(f'mssql+pymssql://{username}:{password}@{server}/{database}')
+engine = create_engine('mssql+pymssql://{}:{}@{}/{}'.format(username, password, server, database))
+
 metadata = MetaData()
 metadata.reflect(bind=engine)
 metadata.bind = engine
