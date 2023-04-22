@@ -16,7 +16,7 @@ password = 'Cloud123!'
 print("hello")
 #conn = pymssql.connect(server=server, user=username, password=password, database=database)
 conn2 = 'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={0};DATABASE={1};UID={2};PWD={3}'.format(server, database, username, password)
-
+conn2 = pyodbc.connect(conn2)
 print("connected")
 query = "SELECT * FROM [400_households]"
 df_households = pd.read_sql(query, conn2)
