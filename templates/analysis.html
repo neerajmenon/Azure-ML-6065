@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CS 6065 - Group 57 Final Project </title>
+    <style>
+		/* Header styles */
+		#header {
+			display: flex;
+			align-items: center;
+			background-color: #f2f2f2;
+			padding: 10px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 999;
+		}
+
+		#logo {
+			font-size: 30px;
+			font-weight: bold;
+			margin-right: auto;
+		}
+
+		#group {
+			font-size: 20px;
+			cursor: pointer;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-right: 20px;
+		}
+
+		#group-members {
+			display: none;
+			position: absolute;
+			top: 60px;
+			right: 20px;
+			background-color: #fff;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px #ccc;
+		}
+
+		#group:hover #group-members {
+			display: block;
+		}
+
+		#logout {
+			margin-right: 10px;
+		}
+
+		/* Body styles */
+		body {
+			padding-top: 70px;
+			margin: 0;
+			font-family: Arial, sans-serif;
+		}
+	</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        #search-results {
+            height: 300px;
+            overflow-y: scroll;
+        }
+    </style>
+    
+    <script>
+      function populateSearch() {
+        var dropdown = document.getElementById("hshd-num");
+        var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+        document.getElementById("search-input").value = selectedValue;
+      }
+    </script>
+    
+</head>
+<body>
+    <div id="header" class="row">
+        <div class="col-md-3">
+            <h3>CS6065 Project</h3>
+<!--           <img src="https://arunpotti.files.wordpress.com/2021/12/microsoft_azure.svg_.png" alt="Microsoft Azure" width="40"> -->
+
+        </div>
+        <div class="col-md-3 text-center">
+            <a href="/">Data Pull / Search</a>
+        </div>
+        <div class="col-md-3 text-center">
+            <a href="#">Logout</a>
+        </div>
+        <div class="col-md-3 text-center">
+
+			<div id="group">
+				Group 57
+				<div id="group-members">
+                    Adonia Jebessa<br>
+					Neeraj Menon Manghat<br>
+					Sridevi Gogineni
+					
+				</div>
+			</div>
+        </div>
+    </div>
+	</div>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Analysis & Insights</h1>
+
+        <h5 style="text-align:center">Kroger 84.51 Households x Transactions x Products</h5>
+        <br>
+
+
+    
+
+        <div>
+            {% if plot_data1 %}
+
+            <!-- Display department percentages pie chart -->
+            <img src="data:image/png;base64,{{ plot_data1 }}" alt="Department Spend">
+            {% endif %}
+            {% if plot_data2 %}
+
+            <!-- PLOT 2 -->
+            <img src="data:image/png;base64,{{ plot_data2 }}" alt="Department Percentages">
+            {% endif %}
+            
+            {% if plot_data3 %}
+
+            <!-- PLOT 3-->
+            <img src="data:image/png;base64,{{ plot_data3 }}" alt="Distribution Change">
+            {% endif %}
+            {% if plot_data4 %}
+
+            <h1>Q1. 1. How does customer engagement change over time?</h1>
+            <h2>(a) What categories are growing or shrinking with changing customer engagement?</h2>
+              
+            <!-- PLOT 4 -->
+            <img src="data:image/png;base64,{{ plot_data4 }}" alt="Department Percentages">
+            {% endif %}
+
+            {% if plot_data5 %}
+            <!-- PLOT 5 -->
+            <h2> FOOD categories dynamics </h2>
+            <img src="data:image/png;base64,{{ plot_data5 }}" alt="Department Percentages">
+            {% endif %}
+
+            {% if plot_data6 %}
+            <!-- PLOT 6 -->
+            <h2> NON-FOOD categories dynamics </h2>
+            <img src="data:image/png;base64,{{ plot_data6 }}" alt="Department Percentages">
+            {% endif %}
+            
+            {% if plot_data7 %}
+            <!-- PLOT 7 -->
+            <h2> PHARMA categories dynamics</h2>
+            <img src="data:image/png;base64,{{ plot_data7 }}" alt="Department Percentages">
+
+            {% endif %}
+
+            <h2>(b) Do households spend less or more? </h2>
+
+            <!-- PLOT 8 -->
+            {% if plot_data8 %}
+            <h2> All households expenditure trend</h2>
+            <img src="data:image/png;base64,{{ plot_data8 }}" alt="Department Percentages">
+            {% endif %}
+
+                        <!-- PLOT 9 -->
+                        {% if plot_data9 %}
+                        <h2> Expenditure trend per week for lowest & highest spending households</h2>
+                        <img src="data:image/png;base64,{{ plot_data9 }}" alt="Department Percentages">
+                        {% endif %}
+
+            <!-- PLOT 10 -->
+            {% if plot_data10 %}
+            <h2> Expenditure per week per household</h2>
+            <img src="data:image/png;base64,{{ plot_data10 }}" alt="Department Percentages">
+            {% endif %}
+
+            <!-- PLOT 11 -->
+            {% if plot_data11 %}
+            <h2> Expenditure per week trend across all households</h2>
+            <img src="data:image/png;base64,{{ plot_data11 }}" alt="Department Percentages">
+            {% endif %}
+
+            <h1>Q2. 2. Which demographic factors (e.g. household size, presence of children, income) appear to affect customer engagement?</h1>
+            <h2>(a) Demographic factors that affect customer engagement</h2>
+
+            <!-- PLOT 12 -->
+                        {% if plot_data12 %}
+                        <h2> Household size vs Engagement</h2>
+                        <img src="data:image/png;base64,{{ plot_data12 }}" alt="Department Percentages">
+                        {% endif %}
+
+            <!-- PLOT 13 -->
+            {% if plot_data13 %}
+            <h2> Children Count vs Engagement</h2>
+            <img src="data:image/png;base64,{{ plot_data13 }}" alt="Department Percentages">
+            {% endif %}
+
+
+                        <!-- PLOT 14 -->
+                        {% if plot_data14 %}
+                        <h2> Income Range vs Engagement</h2>
+                        <img src="data:image/png;base64,{{ plot_data14 }}" alt="Department Percentages">
+                        {% endif %}
+
+            <h2>(b) How do they affect customer engagement with certain categories?</h2>
+
+
+
+    </div>
+</body>
+</html>

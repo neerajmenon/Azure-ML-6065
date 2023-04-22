@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CS 6065 - Group 57 Final Project </title>
+    <style>
+		/* Header styles */
+		#header {
+			display: flex;
+			align-items: center;
+			background-color: #f2f2f2;
+			padding: 10px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 999;
+		}
+
+		#logo {
+			font-size: 30px;
+			font-weight: bold;
+			margin-right: auto;
+		}
+
+		#group {
+			font-size: 20px;
+			cursor: pointer;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-right: 20px;
+		}
+
+		#group-members {
+			display: none;
+			position: absolute;
+			top: 60px;
+			right: 20px;
+			background-color: #fff;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px #ccc;
+		}
+
+		#group:hover #group-members {
+			display: block;
+		}
+
+		#logout {
+			margin-right: 10px;
+		}
+
+		/* Body styles */
+		body {
+			padding-top: 70px;
+			margin: 0;
+			font-family: Arial, sans-serif;
+		}
+	</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        #search-results {
+            height: 300px;
+            overflow-y: scroll;
+        }
+    </style>
+    
+    <script>
+      function populateSearch() {
+        var dropdown = document.getElementById("hshd-num");
+        var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+        document.getElementById("search-input").value = selectedValue;
+      }
+    </script>
+    
+</head>
+<body>
+    <div id="header" class="row">
+        <div class="col-md-3">
+            <h3>CS6065 Project</h3>
+<!--           <img src="https://arunpotti.files.wordpress.com/2021/12/microsoft_azure.svg_.png" alt="Microsoft Azure" width="40"> -->
+
+        </div>
+        <div class="col-md-3 text-center">
+            <a href="/analysis">Analysis</a>
+        </div>
+        <div class="col-md-3 text-center">
+            <a href="#">Logout</a>
+        </div>
+        <div class="col-md-3 text-center">
+
+			<div id="group">
+				Group 57
+				<div id="group-members">
+                    Adonia Jebessa<br>
+					Neeraj Menon Manghat<br>
+					Sridevi Gogineni
+					
+				</div>
+			</div>
+        </div>
+    </div>
+	</div>
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Data Pull Search</h1>
+
+        <h5 style="text-align:center">Kroger 84.51 Households x Transactions x Products</h5>
+        <br>
+
+
+        <p>Search for a household to view its data</p>
+        <form class="form-inline mb-3" method="POST" action="{{ url_for('search_results') }}">
+            <div class="form-group mr-2">
+                <input type="text" class="form-control" id="search-input" name="hshd_num" placeholder="Enter Hshd_num">
+                
+    <!--<label for="hshd-num">Select hshd_num:</label>-->
+    <select id="hshd-num" style="overflow-y: auto;" onchange="populateSearch()">
+      <option value="">Pick hshd_num</option>
+        <option value=" 29 "> 29 </option>
+        <option value=" 53 "> 53 </option>
+        <option value=" 60 "> 60 </option>
+        <option value=" 81 "> 81 </option>
+        <option value=" 92 "> 92 </option>
+        <option value=" 99 "> 99 </option>
+        <option value=" 115 "> 115 </option>
+        <option value=" 117 "> 117 </option>
+        <option value=" 136 "> 136 </option>
+        <option value=" 160 "> 160 </option>
+        <option value=" 183 "> 183 </option>
+        <option value=" 184 "> 184 </option>
+        <option value=" 185 "> 185 </option>
+        <option value=" 186 "> 186 </option>
+        <option value=" 196 "> 196 </option>
+        <option value=" 242 "> 242 </option>
+        <option value=" 361 "> 361 </option>
+        <option value=" 401 "> 401 </option>
+        <option value=" 422 "> 422 </option>
+        <option value=" 438 "> 438 </option>
+        <option value=" 455 "> 455 </option>
+        <option value=" 459 "> 459 </option>
+        <option value=" 525 "> 525 </option>
+        <option value=" 590 "> 590 </option>
+        <option value=" 594 "> 594 </option>
+        <option value=" 605 "> 605 </option>
+        <option value=" 642 "> 642 </option>
+        <option value=" 682 "> 682 </option>
+        <option value=" 762 "> 762 </option>
+        <option value=" 764 "> 764 </option>
+        <option value=" 766 "> 766 </option>
+        <option value=" 780 "> 780 </option>
+        <option value=" 789 "> 789 </option>
+        <option value=" 801 "> 801 </option>
+        <option value=" 826 "> 826 </option>
+        <option value=" 845 "> 845 </option>
+        <option value=" 916 "> 916 </option>
+        <option value=" 984 "> 984 </option>
+        <option value=" 1012 "> 1012 </option>
+        <option value=" 1015 "> 1015 </option>
+        <option value=" 1020 "> 1020 </option>
+        <option value=" 1034 "> 1034 </option>
+        <option value=" 1080 "> 1080 </option>
+        <option value=" 1102 "> 1102 </option>
+        <option value=" 1120 "> 1120 </option>
+        <option value=" 1121 "> 1121 </option>
+        <option value=" 1122 "> 1122 </option>
+        <option value=" 1137 "> 1137 </option>
+        <option value=" 1187 "> 1187 </option>
+        <option value=" 1195 "> 1195 </option>
+        <option value=" 1205 "> 1205 </option>
+        <option value=" 1234 "> 1234 </option>
+        <option value=" 1241 "> 1241 </option>
+        <option value=" 1245 "> 1245 </option>
+        <option value=" 1265 "> 1265 </option>
+        <option value=" 1270 "> 1270 </option>
+        <option value=" 1301 "> 1301 </option>
+        <option value=" 1358 "> 1358 </option>
+        <option value=" 1373 "> 1373 </option>
+        <option value=" 1441 "> 1441 </option>
+        <option value=" 1446 "> 1446 </option>
+        <option value=" 1448 "> 1448 </option>
+        <option value=" 1461 "> 1461 </option>
+        <option value=" 1473 "> 1473 </option>
+        <option value=" 1492 "> 1492 </option>
+        <option value=" 1526 "> 1526 </option>
+        <option value=" 1565 "> 1565 </option>
+        <option value=" 1573 "> 1573 </option>
+        <option value=" 1631 "> 1631 </option>
+        <option value=" 1729 "> 1729 </option>
+        <option value=" 1748 "> 1748 </option>
+        <option value=" 1750 "> 1750 </option>
+        <option value=" 1786 "> 1786 </option>
+        <option value=" 1795 "> 1795 </option>
+        <option value=" 1797 "> 1797 </option>
+        <option value=" 1873 "> 1873 </option>
+        <option value=" 1885 "> 1885 </option>
+        <option value=" 1904 "> 1904 </option>
+        <option value=" 1924 "> 1924 </option>
+        <option value=" 1937 "> 1937 </option>
+        <option value=" 1963 "> 1963 </option>
+        <option value=" 1990 "> 1990 </option>
+        <option value=" 2004 "> 2004 </option>
+        <option value=" 2011 "> 2011 </option>
+        <option value=" 2102 "> 2102 </option>
+        <option value=" 2143 "> 2143 </option>
+        <option value=" 2148 "> 2148 </option>
+        <option value=" 2175 "> 2175 </option>
+        <option value=" 2232 "> 2232 </option>
+        <option value=" 2337 "> 2337 </option>
+        <option value=" 2345 "> 2345 </option>
+        <option value=" 2371 "> 2371 </option>
+        <option value=" 2391 "> 2391 </option>
+        <option value=" 2406 "> 2406 </option>
+        <option value=" 2429 "> 2429 </option>
+        <option value=" 2433 "> 2433 </option>
+        <option value=" 2454 "> 2454 </option>
+        <option value=" 2507 "> 2507 </option>
+        <option value=" 2512 "> 2512 </option>
+        <option value=" 2519 "> 2519 </option>
+        <option value=" 2541 "> 2541 </option>
+        <option value=" 2573 "> 2573 </option>
+        <option value=" 2617 "> 2617 </option>
+        <option value=" 2629 "> 2629 </option>
+        <option value=" 2639 "> 2639 </option>
+        <option value=" 2654 "> 2654 </option>
+        <option value=" 2685 "> 2685 </option>
+        <option value=" 2780 "> 2780 </option>
+        <option value=" 2781 "> 2781 </option>
+        <option value=" 2822 "> 2822 </option>
+        <option value=" 2847 "> 2847 </option>
+        <option value=" 2874 "> 2874 </option>
+        <option value=" 2921 "> 2921 </option>
+        <option value=" 2934 "> 2934 </option>
+        <option value=" 2937 "> 2937 </option>
+        <option value=" 2938 "> 2938 </option>
+        <option value=" 2986 "> 2986 </option>
+        <option value=" 2990 "> 2990 </option>
+        <option value=" 2997 "> 2997 </option>
+        <option value=" 3003 "> 3003 </option>
+        <option value=" 3014 "> 3014 </option>
+        <option value=" 3022 "> 3022 </option>
+        <option value=" 3060 "> 3060 </option>
+        <option value=" 3111 "> 3111 </option>
+        <option value=" 3164 "> 3164 </option>
+        <option value=" 3220 "> 3220 </option>
+        <option value=" 3246 "> 3246 </option>
+        <option value=" 3247 "> 3247 </option>
+        <option value=" 3257 "> 3257 </option>
+        <option value=" 3267 "> 3267 </option>
+        <option value=" 3314 "> 3314 </option>
+        <option value=" 3358 "> 3358 </option>
+        <option value=" 3398 "> 3398 </option>
+        <option value=" 3411 "> 3411 </option>
+        <option value=" 3418 "> 3418 </option>
+        <option value=" 3474 "> 3474 </option>
+        <option value=" 3486 "> 3486 </option>
+        <option value=" 3496 "> 3496 </option>
+        <option value=" 3523 "> 3523 </option>
+        <option value=" 3614 "> 3614 </option>
+        <option value=" 3670 "> 3670 </option>
+        <option value=" 3672 "> 3672 </option>
+        <option value=" 3733 "> 3733 </option>
+        <option value=" 3739 "> 3739 </option>
+        <option value=" 3755 "> 3755 </option>
+        <option value=" 3784 "> 3784 </option>
+        <option value=" 3809 "> 3809 </option>
+        <option value=" 3820 "> 3820 </option>
+        <option value=" 3840 "> 3840 </option>
+        <option value=" 3842 "> 3842 </option>
+        <option value=" 3889 "> 3889 </option>
+        <option value=" 3904 "> 3904 </option>
+        <option value=" 3964 "> 3964 </option>
+        <option value=" 3993 "> 3993 </option>
+        <option value=" 4057 "> 4057 </option>
+        <option value=" 4062 "> 4062 </option>
+        <option value=" 4078 "> 4078 </option>
+        <option value=" 4126 "> 4126 </option>
+        <option value=" 4171 "> 4171 </option>
+        <option value=" 4183 "> 4183 </option>
+        <option value=" 4272 "> 4272 </option>
+        <option value=" 4453 "> 4453 </option>
+        <option value=" 4457 "> 4457 </option>
+        <option value=" 4458 "> 4458 </option>
+        <option value=" 4506 "> 4506 </option>
+        <option value=" 4713 "> 4713 </option>
+        <option value=" 4740 "> 4740 </option>
+        <option value=" 4766 "> 4766 </option>
+        <option value=" 4774 "> 4774 </option>
+        <option value=" 4778 "> 4778 </option>
+        <option value=" 4857 "> 4857 </option>
+        <option value=" 4909 "> 4909 </option>
+      <!-- Add remaining options here -->
+    </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+
+
+
+        <div class="table-responsive" id="search-results">
+            {% if result is not none %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Hshd_num</th>
+                        <th>Basket_num</th>
+                        <th>Date</th>
+                        <th>Product_num</th>
+                        <th>Spend</th>
+                        <th>Units</th>
+                        <th>Store_R</th>
+                        <th>Week_num</th>
+                        <th>Year</th>
+                        <th>Department</th>
+                        <th>Commodity</th>
+                        <th>Brand_TY</th>
+                        <th>Natural_Organic_Flag</th>
+                        <th>L</th>
+                        <th>Age_Range</th>
+                        <th>Marital</th>
+                        <th>Income_Range</th>
+                        <th>Homeowner</th>
+                        <th>Hshd_Composition</th>
+                        <th>Hh_Size</th>
+                        <th>Children</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in result %}
+                    <tr>
+                        <td>{{ row['HSHD_NUM'] }}</td>
+                        <td>{{ row['BASKET_NUM'] }}</td>
+                        <td>{{ row['PURCHASE'] }}</td>
+                        <td>{{ row['PRODUCT_NUM'] }}</td>
+                        <td>{{ row['SPEND'] }}</td>
+                        <td>{{ row['UNITS'] }}</td>
+                        <td>{{ row['STORE_R'] }}</td>
+                        <td>{{ row['WEEK_NUM'] }}</td>
+                        <td>{{ row['YEAR'] }}</td>
+                        <td>{{ row['DEPARTMENT'] }}</td>
+                        <td>{{ row['COMMODITY'] }}</td>
+                        <td>{{ row['BRAND_TY'] }}</td>
+                        <td>{{ row['NATURAL_ORGANIC_FLAG'] }}</td>
+                        <td>{{ row['L'] }}</td>
+                        <td>{{ row['AGE_RANGE'] }}</td>
+                        <td>{{ row['MARITAL'] }}</td>
+                        <td>{{ row['INCOME_RANGE'] }}</td>
+                        <td>{{ row['HOMEOWNER'] }}</td>
+                        <td>{{ row['HSHD_COMPOSITION'] }}</td>
+                        <td>{{ row['HH_SIZE'] }}</td>
+                        <td>{{ row['CHILDREN'] }}</td>
+                    </tr>
+                    {% endfor %}            
+                </tbody>
+            </table>
+            
+
+            {% endif %}
+        </div>
+        <div>
+            {% if plot_data %}
+
+            <!-- Display department percentages pie chart -->
+            <img src="data:image/png;base64,{{ plot_data }}" alt="Department Percentages">
+            {% endif %}
+    </div>
+
+    
+</body>
+</html>

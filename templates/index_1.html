@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Data Pull Search</title>
+</head>
+<body>
+    <h1>Data Pull Search</h1>
+    <form method="POST" action="{{ url_for('search_results') }}">
+        <label for="hshd_num">Search by HSHD_NUM:</label>
+        <input type="text" id="hshd_num" name="hshd_num" required>
+        <br><br>
+        <input type="submit" value="Search">
+    </form>
+
+    {% if results %}
+        <h2>Search Results:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>HSHD_NUM</th>
+                    <th>BASKET_NUM</th>
+                    <th>DATE</th>
+                    <th>PRODUCT_NUM</th>
+                    <th>DEPARTMENT</th>
+                    <th>COMMODITY</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in results %}
+                    <tr>
+                        <td>{{ row['HSHD_NUM'] }}</td>
+                        <td>{{ row['BASKET_NUM'] }}</td>
+                        <td>{{ row['PURCHASE'] }}</td>
+                        <td>{{ row['PRODUCT_NUM'] }}</td>
+                        <td>{{ row['DEPARTMENT'] }}</td>
+                        <td>{{ row['COMMODITY'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
