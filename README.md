@@ -47,5 +47,5 @@ password = '<yourpassword>'
 Adding New Data
 ---------------
   There are two options:
-  (a) connect to my SQL Server DB and use Azure Data Studio to import new csv or SQL queries to add new data
+  (a) connect to my SQL Server DB and use Azure Data Studio to import new csv or SQL queries to add new data (Example is given in the file called 400_households.csv. Simply create a similar query for all 3 tables and run it on server- neeraj.database.windows.net and database- kroger
   (b) Upload new data directly into the application, will be processed with pandas
