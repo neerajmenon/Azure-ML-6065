@@ -3,8 +3,11 @@
 CS6065 Final Project - Data Science with Azure on Kroger / 84.51 Data
 
 /data : Data Pull & Search by household
+
 /analysis : Insights using Data Science
+
 /login : Login
+
 /logout : Logout
 
 Questions Answered:
