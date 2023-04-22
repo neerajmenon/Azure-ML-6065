@@ -12,7 +12,9 @@ database = 'kroger'
 username = 'neeraj'
 password = 'Cloud123!'
 
+print("hello")
 conn = pymssql.connect(server=server, user=username, password=password, database=database)
+print("connected")
 query = "SELECT * FROM [400_households]"
 df_households = pd.read_sql(query, conn)
 query = "SELECT * FROM [400_transactions]"
