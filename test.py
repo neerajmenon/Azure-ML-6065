@@ -8,22 +8,22 @@ import pyodbc
 
 app = Flask(__name__)
 
-server = 'tcp:neeraj.database.windows.net'
+server = 'neeraj.database.windows.net'
 database = 'kroger'
 username = 'neeraj'
 password = 'Cloud123!'
 
 print("hello")
-#conn = pymssql.connect(server=server, user=username, password=password, database=database)
-conn2 = 'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={0};DATABASE={1};UID={2};PWD={3}'.format(server, database, username, password)
-conn2 = pyodbc.connect(conn2)
+conn = pymssql.connect(server=server, user=username, password=password, database=database)
+#conn2 = 'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={0};DATABASE={1};UID={2};PWD={3}'.format(server, database, username, password)
+#conn2 = pyodbc.connect(conn2)
 print("connected")
 query = "SELECT * FROM [400_households]"
-df_households = pd.read_sql(query, conn2)
+df_households = pd.read_sql(query, conn)
 query = "SELECT * FROM [400_transactions]"
-df_transactions = pd.read_sql(query, conn2)
+df_transactions = pd.read_sql(query, conn)
 query = "SELECT * FROM [400_products]"
-df_products = pd.read_sql(query, conn2)
+df_products = pd.read_sql(query, conn)
 print(df_products[:5])
 print(df_households.shape)
 print(df_transactions.shape)
