@@ -187,3 +187,40 @@ def income_engagement(temp):
     return encode(fig)
 
 # QUESTION 2 - B
+
+
+def hhsize_department(temp):
+    df = temp.copy()
+    # group by household size and category, summing up the spend
+    df_hh_size_cat = df.groupby(['HH_SIZE', 'DEPARTMENT'])['SPEND'].sum().reset_index()
+    fig, ax = plt.subplots(figsize=(12, 8))
+    for key, grp in df_hh_size_cat.groupby(['HH_SIZE']):
+        ax = grp.plot(ax=ax, kind='line', x='DEPARTMENT', y='SPEND', label=key)
+    ax.set_xlabel('Commodity')
+    ax.set_ylabel('Total Spend')
+    ax.set_title('Total Spend per Household Size and Department')
+    return encode(fig)
+
+def children_department(temp):
+    df = temp.copy()
+    # group by household size and category, summing up the spend
+    df_children_cat = df.groupby(['CHILDREN', 'DEPARTMENT'])['SPEND'].sum().reset_index()
+    fig, ax = plt.subplots(figsize=(12, 8))
+    for key, grp in df_children_cat.groupby(['CHILDREN']):
+        ax = grp.plot(ax=ax, kind='line', x='DEPARTMENT', y='SPEND', label=key)
+    ax.set_xlabel('Commodity')
+    ax.set_ylabel('Total Spend')
+    ax.set_title('Total Spend per Children count and Department')
+    return encode(fig)
+
+def income_department(temp):
+    df = temp.copy()
+    # group by household size and category, summing up the spend
+    df_income_cat = df.groupby(['INCOME_RANGE', 'DEPARTMENT'])['SPEND'].sum().reset_index()
+    fig, ax = plt.subplots(figsize=(12, 8))
+    for key, grp in df_income_cat.groupby(['INCOME_RANGE']):
+        ax = grp.plot(ax=ax, kind='line', x='DEPARTMENT', y='SPEND', label=key)
+    ax.set_xlabel('Commodity')
+    ax.set_ylabel('Total Spend')
+    ax.set_title('Total Spend per Income Range and Department')
+    return encode(fig)

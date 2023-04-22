@@ -210,7 +210,21 @@
 
             <h2>(b) How do they affect customer engagement with certain categories?</h2>
 
-
+            <!-- PLOT 15 -->
+            {% if plot_data15 %}
+            <h2> Household Size vs Category Engagement</h2>
+            <img src="data:image/png;base64,{{ plot_data15 }}" alt="Department Percentages">
+            {% endif %}
+            <!-- PLOT 16 -->
+            {% if plot_data16 %}
+            <h2> Children count vs Category Engagement</h2>
+            <img src="data:image/png;base64,{{ plot_data16 }}" alt="Department Percentages">
+            {% endif %}
+            <!-- PLOT 17 -->
+            {% if plot_data17 %}
+            <h2> Income Range vs Category Engagement</h2>
+            <img src="data:image/png;base64,{{ plot_data17 }}" alt="Department Percentages">
+            {% endif %}
 
     </div>
 </body>

@@ -64,6 +64,11 @@ def analysis():
         plot_data12 = plot.hh_size_engagement(temp)
         plot_data13 = plot.children_engagement(temp)
         plot_data14 = plot.income_engagement(temp)
+        
+        #QUESTION 2 B
+        plot_data15 = plot.hhsize_department(temp)
+        plot_data16 = plot.children_department(temp)
+        plot_data17 = plot.income_department(temp)
 
         
     return render_template('analysis.html', result=None,plot_data1=plot_data1
@@ -79,7 +84,10 @@ def analysis():
                            ,plot_data11=plot_data11
                            ,plot_data12=plot_data12
                            ,plot_data13=plot_data13
-                           ,plot_data14=plot_data14)
+                           ,plot_data14=plot_data14
+                           ,plot_data15=plot_data15
+                           ,plot_data16=plot_data16
+                           ,plot_data17=plot_data17)
             
 @app.route('/', methods=['GET', 'POST'])
 def search_results():
