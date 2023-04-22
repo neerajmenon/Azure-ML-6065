@@ -30,6 +30,7 @@ conn = engine
 print("connected")
 query = "SELECT * FROM [400_households]"
 df_households = pd.read_sql(query, conn)
+print("done")
 query = "SELECT * FROM [400_transactions]"
 df_transactions = pd.read_sql(query, conn)
 query = "SELECT * FROM [400_products]"
