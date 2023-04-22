@@ -5,6 +5,8 @@ import os, io, base64, plot, pymssql, matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import pyodbc
+from sqlalchemy import create_engine
+
 
 app = Flask(__name__)
 
@@ -17,6 +19,8 @@ print("hello")
 conn = pymssql.connect(server=server, user=username, password=password, database=database)
 #conn2 = 'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={0};DATABASE={1};UID={2};PWD={3}'.format(server, database, username, password)
 #conn2 = pyodbc.connect(conn2)
+engine = create_engine(f'mssql+pymssql://{username}:{password}@{server}/{database}')
+conn = engine
 print("connected")
 query = "SELECT * FROM [400_households]"
 df_households = pd.read_sql(query, conn)
