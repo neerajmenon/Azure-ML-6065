@@ -44,6 +44,23 @@ df_merged = pd.merge(df_transactions, df_products, on='PRODUCT_NUM')
 df_merged = pd.merge(df_merged, df_households, on='HSHD_NUM')
 df_merged = df_merged.sort_values(['HSHD_NUM', 'BASKET_NUM', 'PURCHASE', 'PRODUCT_NUM', 'DEPARTMENT', 'COMMODITY'])
 
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        # Load CSV files into pandas dataframes
+        df_h = pd.read_csv(request.files['file1'])
+        df_t = pd.read_csv(request.files['file2'])
+        df_p = pd.read_csv(request.files['file3'])
+        
+        print(df_h.shape)
+        # Do something with the dataframes, e.g. merge them, perform analysis, etc.
+
+        return 'Files uploaded successfully!'
+    
+    # Render the upload.html template for GET requests
+    return render_template('upload.html')
+
+
 
 @app.route("/logout")
 def logout():
