@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, redirect, flash, session
 import pymssql
 import pandas as pd
 import os, io, base64, plot, pymssql, matplotlib
@@ -9,6 +9,7 @@ from sqlalchemy import create_engine, MetaData
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = "thisisasecret!!!!"
 
 server = 'neeraj.database.windows.net'
 database = 'kroger'
@@ -43,6 +44,27 @@ df_merged = pd.merge(df_transactions, df_products, on='PRODUCT_NUM')
 df_merged = pd.merge(df_merged, df_households, on='HSHD_NUM')
 df_merged = df_merged.sort_values(['HSHD_NUM', 'BASKET_NUM', 'PURCHASE', 'PRODUCT_NUM', 'DEPARTMENT', 'COMMODITY'])
 
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+@app.route('/login',methods=['GET','POST'])
+def login():
+  if request.method == 'POST':
+        name = request.form['username']
+        password = request.form['password']
+        if name == password:
+            flash('You were successfully logged in!')
+            session['username'] = name
+            return redirect(url_for('data'))
+        else:
+            flash("Incorrect password. Hint: Username and password are same..")
+        
+        return render_template('login.html')
+  elif request.method == 'GET':
+    return render_template('login.html')
 
 # Testing
 @app.route('/plot')
@@ -105,8 +127,8 @@ def analysis():
                            ,plot_data16=plot_data16
                            ,plot_data17=plot_data17)
             
-@app.route('/', methods=['GET', 'POST'])
-def search_results():
+@app.route('/data', methods=['GET', 'POST'])
+def data():
     if request.method == 'POST':
         # Get the search query from the form
         hshd_num = request.form['hshd_num']

@@ -90,7 +90,7 @@
             <a href="/analysis">Analysis</a>
         </div>
         <div class="col-md-3 text-center">
-            <a href="#">Logout</a>
+            <a href="/logout">Logout</a>
         </div>
         <div class="col-md-3 text-center">
 
@@ -114,7 +114,7 @@
 
 
         <p>Search for a household to view its data</p>
-        <form class="form-inline mb-3" method="POST" action="{{ url_for('search_results') }}">
+        <form class="form-inline mb-3" method="POST" action="{{ url_for('data') }}">
             <div class="form-group mr-2">
                 <input type="text" class="form-control" id="search-input" name="hshd_num" placeholder="Enter Hshd_num">
                 

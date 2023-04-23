@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CS 6065 - Group 57 Final Project </title>
+        <style>
+            /* Header styles */
+            #header {
+                display: flex;
+                align-items: center;
+                background-color: #f2f2f2;
+                padding: 10px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 999;
+            }
+    
+            #logo {
+                font-size: 30px;
+                font-weight: bold;
+                margin-right: auto;
+            }
+    
+            #group {
+                font-size: 20px;
+                cursor: pointer;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-right: 20px;
+            }
+    
+            #group-members {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px #ccc;
+            }
+    
+            #group:hover #group-members {
+                display: block;
+            }
+    
+            #logout {
+                margin-right: 10px;
+            }
+    
+            /* Body styles */
+            body {
+                padding-top: 70px;
+                margin: 0;
+                font-family: Arial, sans-serif;
+            }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <style>
+            #search-results {
+                height: 300px;
+                overflow-y: scroll;
+            }
+        </style>
+    </head>
+	<body>
+        <div id="header" class="row">
+            <div class="col-md-3">
+                <h3>CS6065 Project</h3>
+    <!--           <img src="https://arunpotti.files.wordpress.com/2021/12/microsoft_azure.svg_.png" alt="Microsoft Azure" width="40"> -->
+    
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#">Analysis</a>
+            </div>
+            <div class="col-md-3 text-center">
+                <a href="#">Data Pull</a>
+            </div>
+            <div class="col-md-3 text-center">
+    
+                <div id="group">
+                    Group 57
+                    <div id="group-members">
+                        Adonia Jebessa<br>
+                        Neeraj Menon Manghat<br>
+                        Sridevi Gogineni
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <div class="container mt-5">
+		<h1>Login</h1>
+		<form method="POST">
+		<label>Username:</label><br>
+		<p><input type="text" name="username" required/></p>
+		<label>Password:</label><br>
+		<p><input type="password" name="password" required/></p>
+		<p><input type="submit" value="Enter" /></p>
+		</form>
+    </div>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+
+	</body>
+</html>
