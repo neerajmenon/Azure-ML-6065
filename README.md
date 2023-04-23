@@ -8,9 +8,12 @@ API Endpoints
 
 /analysis : Insights using Data Science
 
+/upload : Upload New Data 
+
 /login : Login
 
 /logout : Logout
+
 
 Questions Answered:
 -----------------------
@@ -20,34 +23,29 @@ Questions Answered:
 2. Which demographic factors (e.g. household size, presence of children, income) appear to affect customer engagement?
 (a) Trends on demographics factors vs customer engagement
 (b) How do they affect customer engagement with certain categories?
-
-Writeup:
 How might we re-engage customers within the store? Or within a specific category?
 
 Technical Details:
 ------------------
 1. Data is loaded on Azure SQL Database, cloud based SQL Server.
 2. CSV Data loaded into Azure SQL using Azure Data Studio Import Wizard
-3. Python Flask application connects to DB and gathers insights
-4. Deployed on Azure App Engine
+3. Python Flask application connects to DB and queries tables before performing analysis
+4. Deployed via gunicorn on Azure Virtual Machine
 
 Manual Deployment Details:
 -------------------------
-1. Ensure DB connection is setup.
+0. Dependencies - pymssql, sqlalchemy, pandas, matplotlib, flask, gunicorn
+1. Ensure DB connection is setup & firewall rules updated.
 
 server = '<yourservername>.database.windows.net'
 database = '<yourdbname>'
 username = '<yourusername>'
 password = '<yourpassword>'
 
-3. export FLASK_APP = test.py
-4. export FLASK_ENV = development
-5. flask run
+2. export FLASK_APP = test.py
+3. export FLASK_ENV = development
+4. nohup python3 -m gunicorn test:app -b 0.0.0.0:5000 &
   
 Adding New Data
 ---------------
-  There are two options:
-  (a) connect to my SQL Server DB and use Azure Data Studio to import new csv or SQL queries to add new data 
-  (Example is given in the file called 400_households.csv. Simply create a similar query for all 3 tables and run it on server- neeraj.database.windows.net and database- kroger
-  
-  (b) Upload new data directly into the application, will be processed with pandas
+ To load new data, use the Upload New Data link on the top of the page to open a page where you can upload the 3 csv files for households, transactions and products. Hit submit and it will redirect to the dashboard where you can see data pull from the new data. However, do not upload too much data with this method as it will cause timeout and crash the app. For very large volumes, use alternate method of inserting into the Azure SQL Database.
