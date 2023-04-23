@@ -115,7 +115,7 @@
         <h5 style="text-align:center">Kroger 84.51 Households x Transactions x Products</h5>
         <br>
 
-
+        <p> Welcome, {{ session['username'] }}</p>
         <p>Search for a household to view its data</p>
         <form class="form-inline mb-3" method="POST" action="{{ url_for('data') }}">
             <div class="form-group mr-2">

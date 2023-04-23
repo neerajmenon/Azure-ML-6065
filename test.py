@@ -51,11 +51,19 @@ def upload():
         df_h = pd.read_csv(request.files['file1'])
         df_t = pd.read_csv(request.files['file2'])
         df_p = pd.read_csv(request.files['file3'])
-        
-        print(df_h.shape)
-        # Do something with the dataframes, e.g. merge them, perform analysis, etc.
+        df_h = df_h.dropna()   
+        df_t = df_t.dropna()   
+        df_p = df_p.dropna()   
+        df_h.columns = [col.strip() for col in df_h.columns]
+        df_t.columns = [col.strip() for col in df_t.columns]
+        df_t = df_t.rename(columns={'PURCHASE_': 'PURCHASE'})
+        df_p.columns = [col.strip() for col in df_p.columns]
+        df_merged = pd.merge(df_t, df_p, on='PRODUCT_NUM')
+        df_merged = pd.merge(df_merged, df_h, on='HSHD_NUM')
+        df_merged = df_merged.sort_values(['HSHD_NUM', 'BASKET_NUM', 'PURCHASE', 'PRODUCT_NUM', 'DEPARTMENT', 'COMMODITY'])
 
-        return 'Files uploaded successfully!'
+
+        return render_template('index.html', result=df_merged.to_dict('records'))
     
     # Render the upload.html template for GET requests
     return render_template('upload.html')
@@ -73,7 +81,6 @@ def login():
         name = request.form['username']
         password = request.form['password']
         if name == password:
-            flash('You were successfully logged in!')
             session['username'] = name
             return redirect(url_for('data'))
         else:
